@@ -1,10 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import TelaInicial from './src/components/TelaInicial';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Pelada Fc </Text>
+      <TelaInicial/>
       <StatusBar style="auto" />
     </View>
   );
@@ -13,7 +14,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#C6FBFB',
     alignItems: 'center',
     justifyContent: 'center',
   },
