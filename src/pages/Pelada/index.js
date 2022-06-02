@@ -20,6 +20,9 @@ export default function Pelada() {
            const [qtdJogadores , setQtdJogadores] = useState(null);
            const [ newJogador  , setNewJogador ] = useState('');
            const [listPlayers , setListPlayers] = useState([]);
+           const [qtdPorTimes , setQtdPorTimes] = useState(null);
+           const [tempo , setTempo] = useState(null);
+           const [numGol , setNumGol] = useState(null);
 
 
       function novoJogador(){
@@ -28,81 +31,93 @@ export default function Pelada() {
       }     
 
   return (
-    <ScrollView  horizontal={false} style={styles.content}>
-            <Pressable onPress={Keyboard.dismiss} style={styles.sectionsForms}>
-                    <Text style={styles.formLabel} >Nome da sessão:</Text>
-                        <TextInput
-                            style={styles.inputSection}
-                            onChangeText={setSectionName} 
-                            value={sectionName}
-                            placeholder="Ex: Pelada de quarta..."  
-                        />    
+     <View style={styles.main}>
+        <View  horizontal={false} style={styles.content}>
+                <Pressable onPress={Keyboard.dismiss} style={styles.sectionsForms}>
+                        <Text style={styles.formLabel} >Nome da sessão:</Text>
+                            <TextInput
+                                style={styles.inputSection}
+                                onChangeText={setSectionName} 
+                                value={sectionName}
+                                placeholder="Ex: Pelada de quarta..."  
+                            />    
 
-                    <ScrollView style={styles.listConfig} horizontal={true} showsHorizontalScrollIndicator={false}>
-                        <View style={styles.itemConfig}>     
-                            <Text style={styles.formLabel} >Qtd por times:</Text>
+                        <ScrollView style={styles.listConfig} horizontal={true} showsHorizontalScrollIndicator={false}>
+                            <View style={styles.itemConfig}>     
+                                <Text style={styles.formLabel} >Qtd por times:</Text>
+                                    <TextInput
+                                        style={styles.imputItemConfig}
+                                        onChangeText={setQtdPorTimes} 
+                                        value={qtdPorTimes}
+                                        placeholder="Ex: 6"
+                                        keyboardType='numeric'  
+                                    /> 
+                            </View>      
+
+                            <View style={styles.itemConfig}>
+                            <Text style={styles.formLabel} >Tempo:</Text>
                                 <TextInput
                                     style={styles.imputItemConfig}
-                                    onChangeText={setSectionName} 
-                                    value={sectionName}
-                                    placeholder="Ex: 6"  
+                                    onChangeText={setTempo} 
+                                    value={tempo}
+                                    placeholder="Ex: 10"  
+                                    keyboardType='numeric'
+                                />    
+                            </View>    
+
+                            <View style={styles.itemConfig}>
+                            <Text style={styles.formLabel} >Gols:</Text>
+                                <TextInput
+                                    style={styles.imputItemConfig}
+                                    onChangeText={setNumGol} 
+                                    value={numGol}
+                                    placeholder="Ex: 2"
+                                    keyboardType='numeric'  
+                                />
+                            </View>
+                        </ScrollView>            
+
+                        <Text style={styles.formLabel} >Incluir Jogador:</Text>   
+                        <View style={styles.divIncluirJogadores}> 
+                                <TextInput
+                                    style={styles.incluirJogadores}
+                                    onChangeText={setNewJogador} 
+                                    value={newJogador}
+                                    placeholder="Ex: Samoel costa ..."  
                                 /> 
-                        </View>      
 
-                        <View style={styles.itemConfig}>
-                        <Text style={styles.formLabel} >Tempo:</Text>
-                            <TextInput
-                                style={styles.imputItemConfig}
-                                onChangeText={setSectionName} 
-                                value={sectionName}
-                                placeholder="Ex: 10"  
-                            />    
-                        </View>    
+                                <TouchableOpacity
+                                    style={styles.buttonIncluirJogador}
+                                    onPress={()=>{
+                                        novoJogador()
+                                    }}    
+                                >
 
-                        <View style={styles.itemConfig}>
-                        <Text style={styles.formLabel} >Gols:</Text>
-                            <TextInput
-                                style={styles.imputItemConfig}
-                                onChangeText={setSectionName} 
-                                value={sectionName}
-                                placeholder="Ex: 2"  
-                            />
+                                <Text style={styles.textBtnIncluir}>Incluir</Text>                  
+
+                                </TouchableOpacity>
+
                         </View>
-                    </ScrollView>            
+                </Pressable>
 
-                     <Text style={styles.formLabel} >Jogadores:</Text>   
-                    <View style={styles.divIncluirJogadores}> 
-                            <TextInput
-                                style={styles.incluirJogadores}
-                                onChangeText={setNewJogador} 
-                                value={newJogador}
-                                placeholder="Ex: Samoel costa ..."  
-                            /> 
 
-                            <TouchableOpacity
-                                style={styles.buttonIncluirJogador}
-                                onPress={()=>{
-                                    novoJogador()
-                                 }}    
-                            >
+                <View style={styles.listaDeJogadores}> 
 
-                              <Text style={styles.textBtnIncluir}>Incluir</Text>                  
+                    <Text style={styles.tituloLista}>Jogadores</Text>                
 
-                            </TouchableOpacity>
+                    {listPlayers.length > 0 ? 
+                        <FlatList
+                            data={listPlayers}
+                            keyExtractor={(item) => String(item.id)}
+                            showsVerticalScrollIndicator = {false}
+                            renderItem = {({item}) => { return( <ListaJogadores data={item} />)}}
+                        />
+                    : <View/> }
+                </View>
+            
 
-                    </View>
-            </Pressable>
-
-           {listPlayers.length > 0 ? 
-            <FlatList
-                style={styles.listaDeJogadores}
-                data={listPlayers}
-                keyExtractor={(item) => String(item.id)}
-                showsVerticalScrollIndicator = {false}
-                renderItem = {({item}) => { return( <ListaJogadores data={item} />)}}
-            />
-          : <View/> }
-
-    </ScrollView>
+        </View>
+    </View>         
+            
   )
 }

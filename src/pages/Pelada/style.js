@@ -3,27 +3,65 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
 
+      main:{
+        flex: 1,
+        //justifyContent: 'center',
+       // alignItems: 'center',
+        margin: 2,
+
+
+      }, 
       content:{  
-            //justifyContent: 'center',
+            flex: 1,
+            height: '50%',
         },
 
         sectionsForms:{
+            flex: 0,
+            marginBottom: 0,
+            backgroundColor: "#3498DB",
+            borderRadius: 10,
+            margin: 5,
+            padding: 5,
+        },
 
+        listaDeJogadores:{
+            flex: 0,
+            marginBottom: 10,
+            backgroundColor: "#3498DB",
+            borderRadius: 10,
+            margin: 5,
+            padding: 10,
+            maxHeight: '60%'
+        },
+
+        tituloLista:{
+            fontSize: 22,
+            fontWeight: 'bold',
+            alignItems:'center',
+            margin: 5,
+            color: "#FDFEFE",
+            marginBottom: 10,
+            justifyContent: 'center',
+            textAlign: 'center'
         },
 
         formLabel:{
-            fontSize: 14,
+            fontSize: 16,
             fontWeight: 'bold',
             alignItems:'center',
-            margin: 10,
-            marginBottom: 2,
+            margin: 5,
+            color: "#FDFEFE",
+            marginBottom: 0,
         },
 
 
         listConfig:{
+
         },
 
         imputItemConfig:{
+            fontSize: 14,
             width:"80%",
             borderRadius: 5,
             backgroundColor: "#00FFFF",
@@ -33,6 +71,7 @@ const styles = StyleSheet.create({
         },  
 
         inputSection:{
+            fontSize: 14,
             width:"90%",
             borderRadius: 5 ,
             backgroundColor: "#00FFFF",
@@ -42,6 +81,7 @@ const styles = StyleSheet.create({
         },
 
         inputQtdJogadores:{
+            fontSize: 14,
             width:"20%",
             borderRadius: 5 ,
             backgroundColor: "#00FFFF",
@@ -77,7 +117,8 @@ const styles = StyleSheet.create({
 
         textBtnIncluir:{
             fontSize: 16,
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            color: "#FDFEFE",
         }
 
 });
